@@ -26,9 +26,25 @@ def getanswer2(count):
     if (res1 or res2):
         if (res3):
             count = count + 1
-            return count;
-    if (not res1 or not res2):
-        for i in num1
+            return count
+    temp = num1
+    for i in num1:
+        temp.remove(i)
+        if (checksafe(temp)):
+            count = count + 1
+            return count
+        temp = num1
+    return count
+
+
+def checksafe(temp):
+    res1 = all(i < j for i, j in zip(temp, temp[1:]))
+    res2 = all(i > j for i, j in zip(temp, temp[1:]))
+    res3 = all(abs(i -j) < 4 for i, j in zip(temp, temp[1:]))
+    if (res1 or res2):
+        if (res3):
+            return True
+    return False
 
 file_data = get_file_data("input.txt")
 count = 0;
@@ -40,6 +56,9 @@ for line in file_data:
     num1 = []
 print(count)
 
-for line in file_date:
+count = 0
+for line in file_data:
     split(line)
-    prev count
+    count = getanswer2(count)
+    num1 = []
+print(count)
