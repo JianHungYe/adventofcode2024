@@ -13,7 +13,7 @@ def split(line):
 def getanswer(count):
     res1 = all(i < j for i, j in zip(num1, num1[1:]))
     res2 = all(i > j for i, j in zip(num1, num1[1:]))
-    res3 = all(abs(i -j) < 4 for i, j in zip(num1, num1[1:]))
+    res3 = all(abs(i - j) < 4 for i, j in zip(num1, num1[1:]))
     if (res1 or res2):
         if (res3):
             count = count + 1
@@ -27,20 +27,20 @@ def getanswer2(count):
         if (res3):
             count = count + 1
             return count
-    temp = num1
-    for i in num1:
-        temp.remove(i)
+
+    for x in range(len(num1)):
+        temp = num1.copy()
+        temp.pop(x)
         if (checksafe(temp)):
             count = count + 1
-            return count
-        temp = num1
+            break
     return count
 
 
 def checksafe(temp):
     res1 = all(i < j for i, j in zip(temp, temp[1:]))
     res2 = all(i > j for i, j in zip(temp, temp[1:]))
-    res3 = all(abs(i -j) < 4 for i, j in zip(temp, temp[1:]))
+    res3 = all(abs(i - j) < 4 for i, j in zip(temp, temp[1:]))
     if (res1 or res2):
         if (res3):
             return True
@@ -49,6 +49,7 @@ def checksafe(temp):
 file_data = get_file_data("input.txt")
 count = 0;
 num1 = []
+num2 =[]
 
 for line in file_data:
     split(line)
