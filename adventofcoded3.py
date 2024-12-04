@@ -32,16 +32,16 @@ def part1():
 
 
 def part2():
+    alllines= ""
     inlineMul = []
     mul = []
     inlineNum = []
     num = []
     sum = 0
     for line in file_data:
+        alllines = alllines + line
 
-        inlineMul = re.findall("mul\([0-9]+,[0-9]+\)", re.sub(r"don't\(\)(.*?)do\(\)", "",line))
-        for i in inlineMul:
-            mul.append(i)
+    mul = re.findall("mul\([0-9]+,[0-9]+\)", re.sub(r"don't\(\)(.*?)do\(\)", "",alllines))
     for i in mul:
         inlineNum = re.findall("[0-9]+", i)
         for j in inlineNum:
@@ -56,4 +56,3 @@ def part2():
 
 part1()
 part2()
-
