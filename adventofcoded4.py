@@ -55,26 +55,40 @@ def part1(count):
     return count
 
 def part2():
-    count2 = 0
+    count = 0
     for i in range(len(grid[0])):
         for j in range(len(grid)):
             if (grid[i][j] == "A"):
                 try:
-                    if (grid[i - 1][j - 1] == "M" and grid[i - 1][j + 1] == "M"):
-                        if (grid[i + 1][j - 1] == "S" and grid[i + 1][j + 1] == "S"):
-                            count2 += 1
-                    elif (grid[i - 1][j - 1] == "S" and grid[i - 1][j + 1] == "S"):
-                        if (grid[i + 1][j - 1] == "M" and grid[i + 1][j + 1] == "M"):
-                            count2 += 1
-                    elif (grid[i - 1][j - 1] == "M" and grid[i - 1][j + 1] == "S"):
-                        if (grid[i + 1][j - 1] == "M" and grid[i + 1][j + 1] == "S"):
-                            count2 += 1
-                    elif (grid[i - 1][j - 1] == "S" and grid[i - 1][j + 1] == "M"):
-                        if (grid[i + 1][j - 1] == "S" and grid[i + 1][j + 1] == "M"):
-                            count2 += 1
+                    tLeft = grid[i - 1][j - 1]
+                    tRight = grid[i - 1][j + 1]
+                    bRight = grid[i + 1][j - 1]
+                    bLeft = grid[i-1][j-1]
+
+                    if (tLeft == "M" and tRight == "M" and bLeft == "S" and bRight == "S"):
+                        count+=1
+                    elif (tLeft == "S" and tRight == "S" and bLeft == "M" and bRight == "M"):
+                        count += 1
+                    elif (tLeft == "M" and tRight == "S" and bLeft == "M" and bRight == "S"):
+                        count += 1
+                    elif (tLeft == "S" and tRight == "M" and bLeft == "S" and bRight == "M"):
+                        count += 1
+
+                    # if (grid[i - 1][j - 1] == "M" and grid[i - 1][j + 1] == "M"):
+                    #     if (grid[i + 1][j - 1] == "S" and grid[i + 1][j + 1] == "S"):
+                    #         count += 1
+                    # elif (grid[i - 1][j - 1] == "S" and grid[i - 1][j + 1] == "S"):
+                    #     if (grid[i + 1][j - 1] == "M" and grid[i + 1][j + 1] == "M"):
+                    #         count += 1
+                    # elif (grid[i - 1][j - 1] == "M" and grid[i - 1][j + 1] == "S"):
+                    #     if (grid[i + 1][j - 1] == "M" and grid[i + 1][j + 1] == "S"):
+                    #         count += 1
+                    # elif (grid[i - 1][j - 1] == "S" and grid[i - 1][j + 1] == "M"):
+                    #     if (grid[i + 1][j - 1] == "S" and grid[i + 1][j + 1] == "M"):
+                    #         count += 1
                 except:
-                    donothing = 1
-    return count2
+                    continue
+    return count
 
 
 
