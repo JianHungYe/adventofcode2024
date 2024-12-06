@@ -55,26 +55,29 @@ def part1(count):
     return count
 
 def part2():
-    count = 0
+    count2 = 0
     for i in range(len(grid[0])):
         for j in range(len(grid)):
-            if (grid[j][i] == "A"):
+            if (grid[i][j] == "A"):
                 try:
-                    if(grid[j-1][i-1]=="M" and grid[j-1][i+1]=="M"):
-                        if(grid[j+1][i-1]=="S" and grid[j+1][i+1]=="S"):
-                            count+=1
-                    if (grid[j - 1][i - 1] == "S" and grid[j - 1][i + 1] == "S"):
-                        if (grid[j + 1][i - 1] == "M" and grid[j + 1][i + 1] == "M"):
-                            count += 1
+                    if (grid[i - 1][j - 1] == "M" and grid[i - 1][j + 1] == "M"):
+                        if (grid[i + 1][j - 1] == "S" and grid[i + 1][j + 1] == "S"):
+                            count2 += 1
+                    elif (grid[i - 1][j - 1] == "S" and grid[i - 1][j + 1] == "S"):
+                        if (grid[i + 1][j - 1] == "M" and grid[i + 1][j + 1] == "M"):
+                            count2 += 1
+                    elif (grid[i - 1][j - 1] == "M" and grid[i - 1][j + 1] == "S"):
+                        if (grid[i + 1][j - 1] == "M" and grid[i + 1][j + 1] == "S"):
+                            count2 += 1
+                    elif (grid[i - 1][j - 1] == "S" and grid[i - 1][j + 1] == "M"):
+                        if (grid[i + 1][j - 1] == "S" and grid[i + 1][j + 1] == "M"):
+                            count2 += 1
                 except:
                     donothing = 1
-
-    return count
+    return count2
 
 
 
 count = part1(count)
 print(count)
-
-count = part2()
-print(count)
+print(part2())
