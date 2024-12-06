@@ -6,7 +6,7 @@ def get_file_data(file_name):
         data.append(line.rstrip())
     return data
 
-file_data = get_file_data("input.txt")
+file_data = get_file_data("test2.txt")
 count = 0
 # build a 2D List based on the file_data
 grid = []
@@ -62,8 +62,10 @@ def part2():
                 try:
                     tLeft = grid[i - 1][j - 1]
                     tRight = grid[i - 1][j + 1]
-                    bRight = grid[i + 1][j - 1]
-                    bLeft = grid[i-1][j-1]
+                    bRight = grid[i + 1][j + 1]
+                    bLeft = grid[i+1][j-1]
+
+                    # print(f"{tLeft}_{tRight}\n_A_\n{bLeft}_{bRight}")
 
                     if (tLeft == "M" and tRight == "M" and bLeft == "S" and bRight == "S"):
                         count+=1
@@ -89,7 +91,6 @@ def part2():
                 except:
                     continue
     return count
-
 
 
 count = part1(count)
