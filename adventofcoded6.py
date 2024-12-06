@@ -24,46 +24,68 @@ for i in range(len(grid[0])):
             sRow = i
             sCol = j
             grid[i].pop(j)
-            grid[i].insert(".", j)
+            grid[i].insert(j, ".")
             beenhere.append([i,j])
+            break
 cRow = sRow
 cCol = sCol
 state = "up"
 guardPresent = True
 while guardPresent:
-    if [state == "up"]:
-        next = grid[cRow+1][cCol]
-        if grid == ".":
-            cRow +=1;
-            if (beenhere.count([cRow, cCol]) != 0):
-                beenhere.append([cRow, cCol]);
+    if state == "up":
+        try:
+            next = grid[cRow+1][cCol]
+        except:
+            guardPresent = True
+            break
+        if next == ".":
+            cRow = cRow + 1
+            print(f"{state} type: {next} row: {cRow} col: {cCol}")
+            if (beenhere.count([cRow, cCol]) == 0):
+                beenhere.append([cRow, cCol])
         elif next == "#":
             state = "right"
-    elif [state == "right"]:
-        next = grid[cRow][cCol+1]
+    if state == "right":
+
+        try:
+            next = grid[cRow][cCol + 1]
+        except:
+            guardPresent = True
+
         if next == ".":
-            cCol;
-            if (beenhere.count([cRow, cCol]) != 0):
+
+            cCol +=1
+            print(f"{state} type: {next} row: {cRow} col: {cCol}")
+            if (beenhere.count([cRow, cCol]) == 0):
                 beenhere.append([cRow, cCol]);
         elif next == "#":
             state = "down"
-    elif [state == "down"]:
-        next = grid[cRow-1][cCol]
-        if grid == ".":
-            cRow +=1;
-            if (beenhere.count([cRow, cCol]) != 0):
+    if state == "down":
+        try:
+            next = grid[cRow - 1][cCol]
+        except:
+            guardPresent = True
+
+        if next == ".":
+            cRow -=1
+            print(f"{state} type: {next} row: {cRow} col: {cCol}")
+            if (beenhere.count([cRow, cCol]) == 0):
                 beenhere.append([cRow, cCol]);
         elif next == "#":
             state = "left"
-    elif [state == "left"]:
-        next = grid[cRow][cCol-1]
+    if state == "left":
+        try:
+            next = grid[cRow][cCol - 1]
+        except:
+            guardPresent = True
+
         if next == ".":
-            cRow += 1;
-            if (beenhere.count([cRow, cCol]) != 0):
-                beenhere.append([cRow, cCol]);
+            cCol -= 1
+            print(f"{state} type: {next} row: {cRow} col: {cCol}")
+            if (beenhere.count([cRow, cCol]) == 0):
+                beenhere.append([cRow, cCol])
         elif next == "#":
             state = "up"
 
 
-
-
+print(len(beenhere) + 1)
