@@ -1,0 +1,53 @@
+def get_file_data(file_name):
+    f = open(file_name)
+    data = []
+    for line in f:
+        data.append(line.rstrip())
+    return data
+
+def split(line):
+    for char in line:
+        num1.append(int(char))
+
+file_data = get_file_data("input.txt")
+count = 0
+num1 = []
+num2= []
+
+for line in file_data:
+    split(line)
+
+i = 0
+
+
+for x in range(len(num1)):
+    if (x%2 == 0):
+        for j in range(num1[x]):
+            num2.append(f"{i}")
+        i+=1
+    else:
+        for j in range(num1[x]):
+            num2.append(".")
+index = len(num2) - 1
+try:
+    while num2.index("."):
+        try:
+            periodIndex = num2.index(".")
+            num2.insert(periodIndex, num2[index])
+            num2.pop(periodIndex+1)
+            num2.pop(index)
+        except:
+            pass
+        index -= 1
+except:
+    pass
+
+sum = 0
+
+for i in range(len(num2)):
+    try:
+        sum += i * int(num2[i])
+    except:
+        pass
+#part 1: pausing the code will somtimes spit out the wrong answer or nothing at all.
+print(sum)
