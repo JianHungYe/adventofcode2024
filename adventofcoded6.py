@@ -1,4 +1,3 @@
-import re
 def get_file_data(file_name):
     f = open(file_name)
     data = []
@@ -7,7 +6,7 @@ def get_file_data(file_name):
     return data
 
 
-file_data = get_file_data("input2")
+file_data = get_file_data("input.txt")
 
 grid = []
 for line in file_data:
@@ -30,18 +29,18 @@ for i in range(len(grid[0])):
 cRow = sRow
 cCol = sCol
 state = "up"
-guardPresent = True
-while guardPresent:
+while True:
     if state == "up":
         try:
-            next = grid[cRow+1][cCol]
+
+            next = grid[cRow-1][cCol]
+
         except:
-            guardPresent = True
             break
         if next == ".":
-            cRow = cRow + 1
-            print(f"{state} type: {next} row: {cRow} col: {cCol}")
-            if (beenhere.count([cRow, cCol]) == 0):
+            cRow-= 1
+
+            if beenhere.count([cRow, cCol]) == 0:
                 beenhere.append([cRow, cCol])
         elif next == "#":
             state = "right"
@@ -50,25 +49,28 @@ while guardPresent:
         try:
             next = grid[cRow][cCol + 1]
         except:
-            guardPresent = True
+            print(1)
+
+            break
 
         if next == ".":
 
             cCol +=1
-            print(f"{state} type: {next} row: {cRow} col: {cCol}")
+
             if (beenhere.count([cRow, cCol]) == 0):
                 beenhere.append([cRow, cCol]);
         elif next == "#":
             state = "down"
     if state == "down":
         try:
-            next = grid[cRow - 1][cCol]
+            next = grid[cRow + 1][cCol]
         except:
-            guardPresent = True
+
+            break
 
         if next == ".":
-            cRow -=1
-            print(f"{state} type: {next} row: {cRow} col: {cCol}")
+            cRow +=1
+
             if (beenhere.count([cRow, cCol]) == 0):
                 beenhere.append([cRow, cCol]);
         elif next == "#":
@@ -77,15 +79,15 @@ while guardPresent:
         try:
             next = grid[cRow][cCol - 1]
         except:
-            guardPresent = True
+            break
 
         if next == ".":
             cCol -= 1
-            print(f"{state} type: {next} row: {cRow} col: {cCol}")
+
             if (beenhere.count([cRow, cCol]) == 0):
                 beenhere.append([cRow, cCol])
         elif next == "#":
             state = "up"
-
-
-print(len(beenhere) + 1)
+    if cRow == 0 or cCol == 0 or cRow == len(grid[0] or cCol == len(grid)):
+        break
+print(len(beenhere))
