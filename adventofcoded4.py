@@ -6,8 +6,7 @@ def get_file_data(file_name):
         data.append(line.rstrip())
     return data
 
-file_data = get_file_data("test2.txt")
-count = 0
+file_data = get_file_data("input.txt")
 # build a 2D List based on the file_data
 grid = []
 for line in file_data:
@@ -16,7 +15,8 @@ for line in file_data:
         row.append(letter)
     grid.append(row)
 
-def part1(count):
+def part1():
+    count = 0
     for row in grid:
         rowstring = ""
         for x in row:
@@ -60,13 +60,12 @@ def part2():
         for j in range(len(grid)):
             if (grid[i][j] == "A"):
                 try:
-                    tLeft = grid[i - 1][j - 1]
-                    tRight = grid[i - 1][j + 1]
-                    bRight = grid[i + 1][j + 1]
-                    bLeft = grid[i+1][j-1]
-
+                    if not (i == 0):
+                        tLeft = grid[i - 1][j - 1]
+                        tRight = grid[i - 1][j + 1]
+                        bRight = grid[i + 1][j + 1]
+                        bLeft = grid[i+1][j-1]
                     # print(f"{tLeft}_{tRight}\n_A_\n{bLeft}_{bRight}")
-
                     if (tLeft == "M" and tRight == "M" and bLeft == "S" and bRight == "S"):
                         count+=1
                     elif (tLeft == "S" and tRight == "S" and bLeft == "M" and bRight == "M"):
@@ -75,24 +74,11 @@ def part2():
                         count += 1
                     elif (tLeft == "S" and tRight == "M" and bLeft == "S" and bRight == "M"):
                         count += 1
-
-                    # if (grid[i - 1][j - 1] == "M" and grid[i - 1][j + 1] == "M"):
-                    #     if (grid[i + 1][j - 1] == "S" and grid[i + 1][j + 1] == "S"):
-                    #         count += 1
-                    # elif (grid[i - 1][j - 1] == "S" and grid[i - 1][j + 1] == "S"):
-                    #     if (grid[i + 1][j - 1] == "M" and grid[i + 1][j + 1] == "M"):
-                    #         count += 1
-                    # elif (grid[i - 1][j - 1] == "M" and grid[i - 1][j + 1] == "S"):
-                    #     if (grid[i + 1][j - 1] == "M" and grid[i + 1][j + 1] == "S"):
-                    #         count += 1
-                    # elif (grid[i - 1][j - 1] == "S" and grid[i - 1][j + 1] == "M"):
-                    #     if (grid[i + 1][j - 1] == "S" and grid[i + 1][j + 1] == "M"):
-                    #         count += 1
                 except:
                     continue
+
     return count
 
 
-count = part1(count)
-print(count)
+print(part1())
 print(part2())
